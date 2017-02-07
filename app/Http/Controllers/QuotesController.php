@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-
+        
 class QuotesController extends Controller
 {
 	    public function __construct()
     {	
-    	 require("../includes/functions.php");
+        //Need to refactor this out somehow?
+        require("../includes/functions.php");
     }
 
         public function index()
@@ -20,5 +21,5 @@ class QuotesController extends Controller
             //lookup function grabs yahoo stock data(includes.functions.php)
     		$stock = lookup($requested);
             return view('quotes')->with('stocks',$stock)->with('requested',$requested);
-    	}
+        }
 }

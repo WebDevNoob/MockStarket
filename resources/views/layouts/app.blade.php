@@ -61,6 +61,14 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        @if (Auth::check())
+                                        <a href="{{ url('/home') }}">Home</a>
+                                        @endif
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('quotes')}}">Lookup Stock</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -7,6 +7,7 @@
             <h3>Quote</h3>
         </div>    
         <div class="row text-center">
+
     @if(isset($stocks))
         @if(is_array($stocks))
             <table class="table table-hover">

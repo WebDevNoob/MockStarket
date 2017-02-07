@@ -42,32 +42,13 @@
      */
     function lookup($symbol)
     {
-        // reject symbols that start with ^
-        if (preg_match("/^\^/", $symbol))
-        {
-            return false;
-        }
-
-        // reject symbols that contain commas
-        if (preg_match("/,/", $symbol))
-        {
-            return false;
-        }
-
-        // headers for proxy servers
-        $headers = [
-            "Accept" => "*/*",
-            "Connection" => "Keep-Alive",
-            "User-Agent" => sprintf("curl/%s", curl_version()["version"])
-        ];
-
         // open connection to Yahoo
         $context = stream_context_create([
             "http" => [
-                "header" => implode(array_map(function($value, $key) { return sprintf("%s: %s\r\n", $key, $value); }, $headers, array_keys($headers))),
-                "method" => "GET"
-            ]
+                "header" => implode(array_map(function($value, $key) { return sprintf("%s: %s\r\n", $key, $value); }, ["Accept" => "*/*","Connection" => "Keep-Alive","User-Agent" => sprintf("curl/%s", curl_version()["version"])], array_keys(["Accept" => "*/*","Connection" => "Keep-Alive","User-Agent" => sprintf("curl/%s", curl_version()["version"])]))),
+                "method" => "GET"]
         ]);
+
         $handle = @fopen("http://download.finance.yahoo.com/d/quotes.csv?f=snl1&s={$symbol}", "r", false, $context);
         if ($handle === false)
         {
