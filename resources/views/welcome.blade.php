@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>FooBar Stocks</title>
+        <title>Mock Starket</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -84,7 +84,7 @@
 
                 <div class="links">
                     <a href="{{ route('quotes')}}" class="btn navbar-default">Lookup Stock</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://github.com/WebDevNoob/MockStarket">GitHub</a>
                     <a href="{{ route('login') }}" class="btn navbar-default">Login</a>
                     <a href="{{ route('register') }}" class="btn navbar-default">Register</a>
                 </div>

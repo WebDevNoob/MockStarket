@@ -1,38 +1,35 @@
 @extends('layouts.app')
-
+@include('layouts.quoteform')
 
 @section('content')
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-        <div class="card text-center">
-            <div class="card-header default-color-dark white-text">Quotes</div>
-                <div class="panel-body">
-@if(isset($stocks))
-
-                <p class="text-danger">
-                {{$stocks["name"]}}
-                {{$stocks["symbol"]}}
-                {{$stocks["price"]}}
-                </p>
-                <a href="{{route('quotes')}}" class="btn btn-default">Get Another Quote</a>
-                </div>
-@else
-                {{ Form::open()}}
-                {{ Form::text('symbol','',array('placeholder'=>'Stock Symbol','class'=>'form-control','required','autofocus'))}}
-                {{ Form::token()}}
-                </div> 
-                <div class='flex-row'>
-                {{ Form::submit('Get Quote', array('class'=>'btn btn-primary'))}} 
-                {{Form::close()}}
-                </div>
-@endif                    
-            </div>
-        </div>
+    <div class="container">
+        <div class="row text-center">
+            <h3>Quote</h3>
+        </div>    
+        <div class="row text-center">
+    @if(isset($stocks))
+        @if(is_array($stocks))
+            <table class="table table-hover">
+            <thead><tr>
+                <th>Company Name</th>
+                <th>Symbol</th>
+                <th>Trading Price</th>
+            </tr></thead>
+            <tbody><tr>
+                <td>{{$stocks["name"]}}</td>
+                <td>{{$stocks["symbol"]}}</td>
+                <td>{{$stocks["price"]}}</td>
+            </tr></tbody>
+            </table>
+        <a href="{{route('quotes')}}" class="btn btn-default">Get Another Quote</a>
+        @endif
+        @if(is_string($stocks))
+            <div class="alert alert-danger">Error: {{$stocks}}<br>{{$requested}}</div>
+            @yield('quoteSearch')
+        @endif
+    @else
+        @yield('quoteSearch')
+    @endif
+        </div>      
     </div>
-</div>
 @endsection
-
-
-   

@@ -14,17 +14,11 @@ class QuotesController extends Controller
     {
         return view('quotes');
     }
-    	public function lookup()
+    	public function lookup(Request $request)
     	{
-    
-    		$stock = lookup($_POST["symbol"]);
-        	if ($stock != false){
-            	return view('quotes')->with('stocks',$stock);
-        	}else 
-        	if($stock ==  false){
-            	apologize("Error Getting Stock :(");
-            exit;
-        	}
-    	return; 
+            $requested = $request['symbol'];
+            //lookup function grabs yahoo stock data(includes.functions.php)
+    		$stock = lookup($requested);
+            return view('quotes')->with('stocks',$stock)->with('requested',$requested);
     	}
 }

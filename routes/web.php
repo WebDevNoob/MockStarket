@@ -18,5 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
 Route::get('/quotes','QuotesController@index')->name('quotes');
 Route::post('/quotes','QuotesController@lookup')->name('quotes');

@@ -17,12 +17,6 @@
         render("apology.php", ["message" => $message]);
         exit;
     }
-    
-    function quote_response($stock){
-        render("quote_response.php", ["stock" => $stock]);
-        exit;
-    }
-    
     function sell_response($profit){
 
         render("sell_response.php", ["profit" => $profit]);
@@ -44,26 +38,7 @@
      */
 
     /**
-     * Logs out current user, if any.  Based on Example #1 at
-     * http://us.php.net/manual/en/function.session-destroy.php.
-     */
-    function logout()
-    {
-        // unset any session variables
-        $_SESSION = [];
-
-        // expire cookie
-        if (!empty($_COOKIE[session_name()]))
-        {
-            setcookie(session_name(), "", time() - 42000);
-        }
-
-        // destroy session
-        session_destroy();
-    }
-
-    /**
-     * Returns a stock by symbol (case-insensitively) else false if not found.
+     * Returns a stock by symbol (case-insensitively) else return error if not found.
      */
     function lookup($symbol)
     {
@@ -105,7 +80,7 @@
         $data = fgetcsv($handle);
         if ($data === false || count($data) == 1)
         {
-            return false;
+            return 'Error Reading File';
         }
 
         // close connection to Yahoo
@@ -114,7 +89,7 @@
         // ensure symbol was found
         if ($data[2] === "N/A" || $data[2] === "0.00")
         {
-            return false;
+            return 'Stock not found';
         }
 
         // return stock as an associative array

@@ -7,12 +7,20 @@
     "production": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
+    "gulp": "^3.8.8",
     "axios": "^0.15.2",
     "bootstrap-sass": "^3.3.7",
     "gulp-minify-css": "^1.2.4",
     "jquery": "^3.1.0",
-    "laravel-mix": "^0.6.0",
+    "laravel-elixir": "^6.0.0-15",
+    "laravel-elixir-browser-sync": "^1.0.0",
+    "laravel-elixir-browser-sync-simple": "^2.1.1",
+    "laravel-elixir-browsersync-official": "^1.0.0",
+    "laravel-elixir-livereload": "^1.1.6",
+    "laravel-elixir-vue-2": "^0.2.0",
+    "laravel-elixir-webpack-official": "^1.0.2",
     "lodash": "^4.16.2",
-    "vue": "^2.0.1"
+    "vue": "^2.0.1",
+    "vue-resource": "^1.0.3"
   }
 }
