@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+{{Auth::user()->username}}
 <div class="offset-md-2">
     <div class="container">
             <div class="panel panel-default text-left">
