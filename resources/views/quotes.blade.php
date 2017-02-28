@@ -26,10 +26,10 @@
         @endif
         @if(is_string($stocks))
             <div class="alert alert-danger">Error: {{$stocks}}<br>{{$requested}}</div>
-            @yield('quoteSearch')
+            @yield('quoteForm')
         @endif
     @else
-        @yield('quoteSearch')
+        @yield('quoteForm')
     @endif
         </div>      
     </div>

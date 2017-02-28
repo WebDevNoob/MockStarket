@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-{{Auth::user()->username}}
+
 <div class="offset-md-2">
     <div class="container">
             <div class="panel panel-default text-left">
@@ -16,9 +16,32 @@
                                 document.getElementById('logout-form').submit();">Logout</a>
                 </div>
                 <div class="panel-body">
-                    <div class="content"></div>
+                    <div class="content">
+                        {{Auth::user()->username}} has ${{Auth::user()->cash}} monies.
+            @if(isset($userStocks))
+            <table class="table table-hover">
+            <thead><tr>
+                <th>Shares</th>
+                <th>Symbol</th>
+                <th>Company Name</th>
+            </tr></thead>
+            <tbody>
+                @foreach ($userStocks as $userStock)
+                <tr>
+                                           
+                    @foreach ($userStock as $stocks)
+                    <td><a href="">{{$stocks}}</a></td>
+                    @endforeach
+
+                </tr>
+
+                @endforeach
+            </tbody>
+            </table>
+            @endif
                 </div>
             </div>
+        </div>
     </div>
 </div>
 @endsection

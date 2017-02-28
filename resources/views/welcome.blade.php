@@ -81,7 +81,6 @@
                 <div class="title m-b-md">
                     <a href="/"><img alt="C$50 Finance" src="/img/logo.png"/></a>
                 </div>
-
                 <div class="links">
                     <a href="{{ route('quotes')}}" class="btn navbar-default">Lookup Stock</a>
                     <a href="https://github.com/WebDevNoob/MockStarket">GitHub</a>

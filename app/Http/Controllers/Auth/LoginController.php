@@ -40,6 +40,7 @@ class LoginController extends Controller
 
     protected function credentials(Request $request)
     {
+        //My understanding is that we validate for an email here, dont fully understand how this works though
         $field = filter_var($request->input('username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         $request->merge([$field => $request->input('username')]);
         return $request->only($field, 'password');

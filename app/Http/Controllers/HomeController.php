@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\userStock;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $userId = Auth::user()->id;
+        $userStocks = \App\userStock::where('id', $userId)->get()->toArray();
+        /*Notice! 
+          Assigned by reference
+          Cheater McCheaterface way of doing it, BE BETTER THAN THIS
+                be aware of the &   */
+        foreach ($userStocks as &$userStock) {
+          array_shift($userStock); 
+        }
+        return view('home')->with('userStocks',$userStocks);
     }
 }
