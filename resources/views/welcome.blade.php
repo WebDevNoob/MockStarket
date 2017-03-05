@@ -82,6 +82,9 @@
                     <a href="/"><img alt="C$50 Finance" src="/img/logo.png"/></a>
                 </div>
                 <div class="links">
+                    @if (Auth::check())
+                    <a href="{{ url('/home') }}">Home</a>
+                    @endif
                     <a href="{{ route('quotes')}}" class="btn navbar-default">Lookup Stock</a>
                     <a href="https://github.com/WebDevNoob/MockStarket">GitHub</a>
                     <a href="{{ route('login') }}" class="btn navbar-default">Login</a>

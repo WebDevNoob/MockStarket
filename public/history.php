@@ -1,5 +1,4 @@
 <?php
-    require("../includes/config.php");
     if ($_SERVER["REQUEST_METHOD"] == "GET"){
         if(empty($_GET)){
             $rows = query("SELECT * FROM transactionHistory WHERE id = ?", $_SESSION['id']);

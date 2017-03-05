@@ -10,14 +10,14 @@
                     <a href="buy.php?symbol=" class="btn btn-default navbar-btn">Buy Stock</a>
                     <a href="sell.php?symbol=" class="btn btn-default navbar-btn">Sell Stock</a>
                     <a href="history.php" class="btn btn-default navbar-btn">History</a>
-                    <a href="addFunds.php" class="btn btn-default navbar-btn">Add Funds</a>
+                    <a href="{{ route('addFunds')}}" class="btn btn-default navbar-btn">Add Funds</a>
                     <a href="{{ route('logout') }}" class="btn btn-default navbar-btn" 
                                 onclick="event.preventDefault(); 
                                 document.getElementById('logout-form').submit();">Logout</a>
                 </div>
                 <div class="panel-body">
                     <div class="content">
-                        {{Auth::user()->username}} has ${{Auth::user()->cash}} monies.
+                        {{Auth::user()->username}} has ${{Auth::user()->cash}} monies!
             @if(isset($userStocks))
             <table class="table table-hover">
             <thead><tr>

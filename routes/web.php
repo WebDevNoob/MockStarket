@@ -21,3 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/quotes','QuotesController@index')->name('quotes');
 Route::post('/quotes','QuotesController@lookup')->name('quotes');
+
+Route::get('/addFunds','AddFundsController@index')->name('addFunds');
+Route::post('/addFunds','AddFundsController@addToFund')->name('addFunds');
+
