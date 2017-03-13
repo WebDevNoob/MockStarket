@@ -26,7 +26,7 @@
         @endif
         @if(is_string($stocks))
             <div class="alert alert-danger">Error: {{$stocks}}<br>{{$requested}}</div>
-            @yield('quoteForm')
+            <a href="{{route('quotes')}}" class="btn btn-default">Try Again</a>
         @endif
     @else
         @yield('quoteForm')

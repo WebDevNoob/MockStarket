@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+
 @section('content')
 
 <div class="offset-md-2">
@@ -7,8 +13,6 @@
             <div class="panel panel-default text-left">
                 <div class="panel-heading">
                     <a href="{{ route('quotes')}}" class="btn btn-default navbar-btn">Lookup Stock</a>
-                    <a href="buy.php?symbol=" class="btn btn-default navbar-btn">Buy Stock</a>
-                    <a href="sell.php?symbol=" class="btn btn-default navbar-btn">Sell Stock</a>
                     <a href="history.php" class="btn btn-default navbar-btn">History</a>
                     <a href="{{ route('addFunds')}}" class="btn btn-default navbar-btn">Add Funds</a>
                     <a href="{{ route('logout') }}" class="btn btn-default navbar-btn" 
@@ -17,7 +21,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="content">
-                        {{Auth::user()->username}} has ${{Auth::user()->cash}} monies!
+                        <center>{{Auth::user()->username}} has ${{Auth::user()->cash}} monies!</center>
             @if(isset($userStocks))
             <table class="table table-hover">
             <thead><tr>
@@ -26,15 +30,17 @@
                 <th>Company Name</th>
             </tr></thead>
             <tbody>
+
                 @foreach ($userStocks as $userStock)
-                <tr>
-                                           
+                <tr>             
                     @foreach ($userStock as $stocks)
-                    <td><a href="">{{$stocks}}</a></td>
+                    <td><a href="{{url('quotes/' . $userStock['symbol'])}}">{{$stocks}}</a></td>
                     @endforeach
 
-                </tr>
 
+                    <td><a href="buy.php?symbol=" class="btn btn-default navbar-btn">Buy Stock</a>
+                        <a href="sell.php?symbol=" class="btn btn-default navbar-btn">Sell Stock</a></td>
+                </tr>
                 @endforeach
             </tbody>
             </table>
