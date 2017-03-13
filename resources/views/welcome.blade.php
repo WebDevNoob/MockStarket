@@ -83,7 +83,7 @@
                 </div>
                 <div class="links">
                     @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Dashboard</a>
                         <a href="{{ route('quotes')}}" class="btn navbar-default">Lookup Stock</a>
                         <a href="https://github.com/WebDevNoob/MockStarket">GitHub</a>
                     @else

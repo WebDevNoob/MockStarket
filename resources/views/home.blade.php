@@ -38,8 +38,8 @@
                     @endforeach
 
 
-                    <td><a href="buy.php?symbol=" class="btn btn-default navbar-btn">Buy Stock</a>
-                        <a href="sell.php?symbol=" class="btn btn-default navbar-btn">Sell Stock</a></td>
+                    <td><a href="{{url('buy/' . $userStock['symbol'])}}" class="btn btn-default navbar-btn">Buy Stock</a>
+                        <a href="{{url('sell?symbol=' . $userStock['symbol'])}}" class="btn btn-default navbar-btn">Sell Stock</a></td>
                 </tr>
                 @endforeach
             </tbody>

@@ -27,5 +27,6 @@ class QuotesController extends Controller
         }else{
             return view('quotes');
         }
+        
     }
 }
