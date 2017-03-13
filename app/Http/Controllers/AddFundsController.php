@@ -29,12 +29,11 @@ class AddFundsController extends Controller
     	$amountToAdd = $request->addedMoney;
     	//Update only if requested amount is positive
     	if ($amountToAdd > 0) {
-    		Auth::user()->cash = Auth::user()->cash + $request->addedMoney;
+    		Auth::user()->cash = Auth::user()->cash + $amountToAdd;
     		Auth::user()->save();
     		return redirect()->action('HomeController@index')->with('status', 'Added Funds'); 
     	}else{
     		//Not very good. Should have some indication that it failed to work for the user. 
-    		return redirect()->action('HomeController@index');
-    	}  
+            return redirect('home')->with('status', 'Failed to Add Funds');    	}  
 	}
 }

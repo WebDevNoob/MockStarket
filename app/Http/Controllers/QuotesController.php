@@ -16,15 +16,16 @@ class QuotesController extends Controller
     {	
     }
 
-    public function index()
+    public function index($symbol = null, Request $request)
     {
-        return view('quotes');
-    }
+        if ($request->input('symbol')){
+            $symbol = $request->input('symbol');
+        }
 
-    public function lookup(Request $request)
-    {
-        $requestedStock = $request['symbol'];
-    	$stock = ReturnLookup::lookupStock($requestedStock);
-        return view('quotes')->with('stocks',$stock)->with('requested',$requestedStock);
+        if ($symbol){
+            return view('quotes')->with('stocks', ReturnLookup::lookupStock($symbol))->with('requested',$symbol);            
+        }else{
+            return view('quotes');
+        }
     }
 }
