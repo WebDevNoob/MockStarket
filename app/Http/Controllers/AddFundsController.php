@@ -25,16 +25,14 @@ class AddFundsController extends Controller
 
     public function addToFund(Request $request)
     {  	
-    	//Get amount to add from post request
-    	$amountToAdd = $request->addedMoney;
-    	//Update only if requested amount is positive
-    	if ($amountToAdd > 0) {
-    		Auth::user()->cash = Auth::user()->cash + $amountToAdd;
-    		Auth::user()->save();
-    		return redirect()->action('HomeController@index')->with('status', 'Added Funds'); 
-    	}else{
-    		//Not very good. Should have some indication that it failed to work for the user. 
-            return redirect('home')->with('status', 'Failed to Add Funds');    	
-                                                 }  
+
+        $this->validate($request, [
+            'amount' => 'required|numeric|greater_than:0'
+        ]);
+        
+    	Auth::user()->cash = Auth::user()->cash + $request->amount;
+    	Auth::user()->save();
+
+    	return redirect('home')->with('status', 'Added $' . $request->amount .' to Funds');   
 	}
 }

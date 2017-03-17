@@ -102,6 +102,10 @@ return [
             'greater_than' => 'The :attribute must be greater than 0',
             'less_than' => 'The :attribute must be less than you have.',
         ],
+        'amount' => [
+            'greater_than' => 'The :attribute must be greater than 0',
+            'less_than' => 'The :attribute must be less than you have.',
+        ],
     ],
 
     /*

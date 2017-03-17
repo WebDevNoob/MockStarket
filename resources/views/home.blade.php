@@ -22,7 +22,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="content">
-                        <center>{{Auth::user()->username}} has ${{Auth::user()->cash}} monies!</center>
+                        <center>{{Auth::user()->username}} ${{money_format('%i',Auth::user()->cash)}} monies!</center>
             @if(isset($userStocks))
             <table class="table table-hover">
             <thead><tr>

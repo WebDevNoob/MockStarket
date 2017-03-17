@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
         });
         Validator::extend('less_than', function($attribute, $value, $parameters){ 
             $other = $parameters[0];
-            return $value < $other;
+            return intval($value) < intval($other);
         });
 
 
