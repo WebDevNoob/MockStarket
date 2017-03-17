@@ -6,6 +6,7 @@
     </div>
 @endif
 
+
 @section('content')
 
 <div class="offset-md-2">
@@ -28,18 +29,19 @@
                 <th>Shares</th>
                 <th>Symbol</th>
                 <th>Company Name</th>
+                <th>Options</th>
             </tr></thead>
             <tbody>
 
                 @foreach ($userStocks as $userStock)
                 <tr>             
                     @foreach ($userStock as $stocks)
-                    <td><a href="{{url('quotes/' . $userStock['symbol'])}}">{{$stocks}}</a></td>
+                    <td><a href="{{url('quotes?symbol=' . $userStock['symbol'])}}">{{$stocks}}</a></td>
                     @endforeach
 
 
                     <td><a href="{{url('buy/' . $userStock['symbol'])}}" class="btn btn-default navbar-btn">Buy Stock</a>
-                        <a href="{{url('sell?symbol=' . $userStock['symbol'])}}" class="btn btn-default navbar-btn">Sell Stock</a></td>
+                        <a href="{{url('sell?name=' . $userStock['name'])}}" class="btn btn-default navbar-btn">Sell Stock</a></td>
                 </tr>
                 @endforeach
             </tbody>

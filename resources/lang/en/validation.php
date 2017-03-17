@@ -98,8 +98,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'sellAmount' => [
+            'greater_than' => 'The :attribute must be greater than 0',
+            'less_than' => 'The :attribute must be less than you have.',
         ],
     ],
 

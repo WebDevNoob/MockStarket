@@ -17,8 +17,14 @@ class BuyStockController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('addFunds');
+        if ($request->input('symbol')){
+    //TODO: If the request has an input symbol, return view with confirmation.  
+            var_dump($request->input('symbol'));    
+            return view('welcome');
+        }
+    //TODO: if the request doesn't have input symbol, return view with user stocks to buy. 
+        return view('home');
     }
 }

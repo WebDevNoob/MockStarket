@@ -19,10 +19,14 @@
             <tbody><tr>
                 <td>{{$stocks["name"]}}</td>
                 <td>{{$stocks["symbol"]}}</td>
-                <td>{{$stocks["price"]}}</td>
+                <td>${{$stocks["price"]}}</td>
             </tr></tbody>
             </table>
         <a href="{{route('quotes')}}" class="btn btn-default">Get Another Quote</a>
+        @if (Auth::check())
+        <a href="{{route('home')}}" class="btn btn-default">Dashboard</a>
+        @endif
+
         @endif
         @if(is_string($stocks))
             <div class="alert alert-danger">Error: {{$stocks}}<br>{{$requested}}</div>
@@ -30,6 +34,9 @@
         @endif
     @else
         @yield('quoteForm')
+        @if (Auth::check())
+            <a href="{{route('home')}}" class="btn btn-default">Dashboard</a>
+        @endif
     @endif
         </div>      
     </div>

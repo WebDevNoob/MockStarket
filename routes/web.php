@@ -25,4 +25,6 @@ Route::get('/addFunds','AddFundsController@index')->name('addFunds');
 Route::post('/addFunds','AddFundsController@addToFund')->name('addFunds');
 
 Route::get('/sell/{symbol?}','SellStockController@index')->name('sell');
+Route::post('/sell','SellStockController@sellStocks')->name('sell.validate');
+
 Route::get('/buy/{symbol?}', 'BuyStockController@index')->name('buy');

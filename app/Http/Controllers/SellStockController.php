@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
+use Includes\ReturnLookup;
+
 
 class SellStockController extends Controller
 {
@@ -17,14 +19,44 @@ class SellStockController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    public function index()
     {
-    	if ($request->input('symbol')){
-    //TODO: If the request has an input symbol, return view with confirmation.	
-    		var_dump($request->input('symbol'));	
-    		return view('welcome');
-    	}
-    //TODO: if the request doesn't have input symbol, return view with user stocks to sell. 
-        return view('home');
+        $userStocks = \App\userStock::where('id', Auth::user()->id)->get();
+        $formSelections = [];
+        foreach ($userStocks as $stock) {
+            $formSelections[$stock->symbol] = $stock->name;            
+        }
+
+        return view('sell')->with('formSelections' , $formSelections);
     }
+
+    public function sellStocks(Request $request)
+    {
+
+        //Variable Declaration
+        $requestedStockRecord = \App\userStock::where('id', Auth::user()->id)->where('symbol', $request->stock);
+        $currentShares = $requestedStockRecord->value('shares');
+        $remainingShares = $currentShares - $request->sellAmount;
+        $moneyMath = ReturnLookup::lookupStock($request->stock)['price'] * $request->sellAmount;
+
+        //Form Validation
+        $this->validate($request, [
+            'sellAmount' => 'required|numeric|greater_than:0|less_than:'. $currentShares
+        ]);
+
+        //Request Processing
+        $requestedStockRecord->update(['shares' => $remainingShares]);
+        Auth::user()->cash = Auth::user()->cash + $moneyMath;
+        Auth::user()->save();
+        
+        //Post Request Record Check
+        if ($remainingShares <= 0 ){
+            $requestedStockRecord->delete();
+            return redirect('home')->with('status','Sucess, $' . $moneyMath . ' has been added to your account. No more shares of ' . $request->stock . ' left.');
+        }
+                
+        //Redirect home
+        return redirect('home')->with('status','Sucess, $' . $moneyMath . ' has been added to your account.');
+    }
+
 }

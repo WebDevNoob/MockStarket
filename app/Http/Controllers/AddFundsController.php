@@ -34,6 +34,7 @@ class AddFundsController extends Controller
     		return redirect()->action('HomeController@index')->with('status', 'Added Funds'); 
     	}else{
     		//Not very good. Should have some indication that it failed to work for the user. 
-            return redirect('home')->with('status', 'Failed to Add Funds');    	}  
+            return redirect('home')->with('status', 'Failed to Add Funds');    	
+                                                 }  
 	}
 }
